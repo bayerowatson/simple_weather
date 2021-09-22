@@ -1,4 +1,5 @@
 const renderWeather = async(url, container) => {
+    container.innerHTML = "<p>Loading...</p>";
     const response = await fetch(url);
     if (response.status !== 200) {
         throw new Error('Something went wrong...')
