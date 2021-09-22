@@ -15,7 +15,7 @@ const renderWeather = async(url, container) => {
     forecast_periods.forEach( period => {
         if (period.temperature > 80) {color = 'red';} 
         else if (period.temperature > 64) {color = 'navy';}
-        else {color = 'blue'};
+        else {color = 'green'};
     
         template +=
         `<div>
