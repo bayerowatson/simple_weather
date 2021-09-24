@@ -11,6 +11,3 @@ const geocoder = async (address) => {
 }
 
 export {geocoder};
-
-
-//Currently working on fixing this function because it returns a promise and not the value of lat lng
