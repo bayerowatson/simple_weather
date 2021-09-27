@@ -1,5 +1,5 @@
 const renderWeather = async(url, container) => {
-    container.firstElementChild.innerHTML = "<p>Loading...</p>";
+
     const response = await fetch(url);
     if (response.status !== 200) {
         throw new Error('Something went wrong...')
@@ -10,9 +10,12 @@ const renderWeather = async(url, container) => {
     const detailsResponse = await fetch(forecastUrl);
     const detailsData = await detailsResponse.json();
     const forecast_periods = detailsData.properties.periods;
+    console.log(forecast_periods);
     let header = `
-        <div class="weather-header">    <h2>${location}</h2>
-            <button>see more... </button>
+        <div class="weather-header">    
+            <h2>${location}</h2>
+            <p>${forecast_periods[0].temperature}&#176;F</p>
+            <p> ${forecast_periods[0].shortForecast}</p>
         </div>`;
     let template = '';
     let color = '';
@@ -27,13 +30,12 @@ const renderWeather = async(url, container) => {
             <p style="color:${color}">${period.detailedForecast}</p>
         </div>`
     })
-    container.firstElementChild.innerHTML = "<p></p>";    
+     
     container.innerHTML += `
         ${header}
         <div class="weather-details" id=${location.split(' ').join('')}>
             ${template}
-        </div>`;
-    
+        </div>`;     
 }
 
 export {renderWeather};
