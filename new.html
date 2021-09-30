@@ -8,16 +8,21 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <div class="content">
-      <nav>
-          <a href="/">Home</a>
-      </nav>
+  <div class="page">
+    <nav>
+      <a href="/">Home</a>
+      <a href="/current.html">Current Location</a>
+      <a href="/new.html">New Location</a>
+    </nav>
+    <div class="border"></div>
+    <div class="content">  
       <form>
         <input type="text" name="gps" required placeholder="Please enter location: (e.g. Fayetteville, WV)">
         <button>Submit</button>
       </form>
       <div class="weather"></div>
     </div>
+  </div>    
 	<script type="module" src="js/new.js"></script>
   </body>
 </html>
