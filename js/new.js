@@ -5,12 +5,12 @@ const container = document.querySelector('.weather');
 
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
-   
+    container.innerHTML = "";
     let weather_section = document.createElement('div');
     container.appendChild(weather_section);
     weather_section.innerHTML = '<div class="weather-content"></div>';
     let weather_content = weather_section.querySelector(".weather-content");
-
+    weather_content.innerHTML = "Loading...";
 
     let gps = null;
     gps = await geocoder(form.gps.value);

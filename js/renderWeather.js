@@ -1,5 +1,5 @@
 const renderWeather = async(url, container) => {
-
+    container.innerHTML = "Loading..."
     const response = await fetch(url);
     if (response.status !== 200) {
         throw new Error('Something went wrong...')
@@ -31,7 +31,7 @@ const renderWeather = async(url, container) => {
         </div>`
     })
      
-    container.innerHTML += `
+    container.innerHTML = `
         ${header}
         <div class="weather-details" id=${location.split(' ').join('')}>
             ${template}
