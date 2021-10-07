@@ -24,14 +24,18 @@ const renderWeather = async(url, container) => {
             
         </div>`;
     let template = '';
-    forecast_periods.forEach( period => {
-        if (period.isDaytime || period.name == 'Overnight') {
+    let lowTemp = '';
+    forecast_periods.forEach( (period, i) => {
+        if (period.isDaytime || period.name == "Overnight") {
+            if (period.name != "Overnight" && i < 13) {
+                lowTemp = forecast_periods[i+1].temperature
+            }
             template +=
             `<div class="accordion-item>
                 <div class='accordion-header' id=${period.name.split(' ').join('')}>
                     <button class='accordion-button' type="button" data-bs-toggle="collapse" data-bs-target=${'#collapse'+period.name.split(' ').join('')} aria-expanded="false" aria-controls=${'collapse'+period.name.split(' ').join('')}>
                         <div class='fs-3 mb-3'>
-                            ${period.name}:  ${findIcon(period.shortForecast)} ${period.temperature}&#176;F
+                            ${period.name}:  ${findIcon(period.shortForecast)} ${period.temperature}&#176;F<span class='fs-5 text-secondary'>${lowTemp && '/'+lowTemp+'&#176;F'}</span>
                         </div>
                     </button>
                 </div>
