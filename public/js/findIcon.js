@@ -8,6 +8,9 @@ const findIcon = (forecast) => {
     if (forecast.includes('Rain') || forecast.includes('Shower')){
         return('<i style="font-size:30px" class="bi bi-cloud-rain"></i>')
     }
+    if (forecast.includes('Fog')){
+        return('<i style="font-size:30px" class="bi bi-cloud-fog"></i>')
+    }
     if (forecast.includes('Partly')){
         return('<i style="font-size:30px" class="bi bi-cloud-sun"></i>')
     }
@@ -28,6 +31,9 @@ const findIcon = (forecast) => {
 const findFillIcon = (forecast) => {
     if (forecast.includes('Thunderstorm')){
         return('<i style="font-size:30px" class="bi bi-cloud-lightning-rain-fill"></i>')
+    }
+    if (forecast.includes('Fog')){
+        return('<i style="font-size:30px" class="bi bi-cloud-fog-fill"></i>')
     }
     if (forecast.includes('Rain') || forecast.includes('Shower')){
         return('<i style="font-size:30px" class="bi bi-cloud-rain-fill"></i>')
