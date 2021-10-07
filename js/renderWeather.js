@@ -1,4 +1,4 @@
-import { findIcon } from "./findIcon.js";
+import { findIcon, findFillIcon } from "./findIcon.js";
 
 const renderWeather = async(url, container) => {
     container.innerHTML = "Loading..."
@@ -15,7 +15,7 @@ const renderWeather = async(url, container) => {
     let header = `
         <div class="weather-header">    
             <h2 class='display-6'>${location}</h2>
-            <p class='text-primary fs-3 mb-1'>${findIcon(forecast_periods[0].shortForecast)}  ${forecast_periods[0].temperature}&#176;F</p>
+            <p class='text-primary fs-3 mb-1'>${findFillIcon(forecast_periods[0].shortForecast)}  ${forecast_periods[0].temperature}&#176;F</p>
             <p class="fs-5 text-primary">${forecast_periods[0].shortForecast}</p>
             
         </div>`;
