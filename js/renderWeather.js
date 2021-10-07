@@ -1,3 +1,5 @@
+import { findIcon } from "./findIcon.js";
+
 const renderWeather = async(url, container) => {
     container.innerHTML = "Loading..."
     const response = await fetch(url);
@@ -10,30 +12,39 @@ const renderWeather = async(url, container) => {
     const detailsResponse = await fetch(forecastUrl);
     const detailsData = await detailsResponse.json();
     const forecast_periods = detailsData.properties.periods;
-    
+    console.log(forecast_periods[4]);
     let header = `
         <div class="weather-header">    
             <h2 class='display-6'>${location}</h2>
-            <p>${forecast_periods[0].temperature}&#176;F</p>
-            <p> ${forecast_periods[0].shortForecast}</p>
+            <p class='text-primary fs-3 mb-1'>${findIcon(forecast_periods[0].shortForecast)}  ${forecast_periods[0].temperature}&#176;F</p>
+            <p class="fs-5 text-primary">${forecast_periods[0].shortForecast}</p>
+            
         </div>`;
     let template = '';
-    let color = '';
     forecast_periods.forEach( period => {
-        if (period.temperature > 80) {color = 'red';} 
-        else if (period.temperature > 64) {color = 'navy';}
-        else {color = 'green'};
+        if (period.isDaytime){
+            template +=
+            `<div class="accordion-item>
+                <div class='accordion-header' id=${period.name.split(' ').join('')}>
+                    <button class='accordion-button' type="button" data-bs-toggle="collapse" data-bs-target=${'#collapse'+period.name.split(' ').join('')} aria-expanded="false" aria-controls=${'collapse'+period.name.split(' ').join('')}>
+                        <div class='fs-3 mb-3'>
+                            ${period.name}:  ${findIcon(period.shortForecast)} ${period.temperature}&#176;F
+                        </div>
+                    </button>
+                </div>
+                <div id=${'collapse'+period.name.split(' ').join('')} class="accordion-collapse collapse" aria-labelledby=${period.name.split(' ').join('')}>
+                    <div class='accordion-body'>
+                        <p class="fs-6">${period.detailedForecast}</p>
+                    </div>
+                </div>
+            </div>`
+        }
     
-        template +=
-        `<div>
-            <h5 class='text-muted'>${period.name}</h3>
-            <p>${period.detailedForecast}</p>
-        </div>`
     })
      
     container.innerHTML = `
         ${header}
-        <div class="weather-details" id=${location.split(' ').join('')}>
+        <div class="weather-details accordion" id=${location.split(' ').join('')}>
             ${template}
         </div>`;     
 }
