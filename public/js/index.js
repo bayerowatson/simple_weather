@@ -39,7 +39,6 @@ window.addEventListener("DOMContentLoaded", () => {
     navigator.geolocation.getCurrentPosition(position => {
         let details = position.coords;
         let gps = details.latitude + ',' + details.longitude;
-        console.log(gps);
         renderWeather(`https://api.weather.gov/points/${gps}`, weather_content)
             .catch(err => alert(err.message));
             

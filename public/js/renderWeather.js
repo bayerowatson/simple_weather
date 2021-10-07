@@ -7,7 +7,11 @@ const renderWeather = async(url, container) => {
         throw new Error('Something went wrong...')
     }
     const data = await response.json();
-    const forecastUrl = (data.properties.forecast)
+    const hourlyUrl = data.properties.forecastHourly;
+    const hourlyResponse = await fetch(hourlyUrl);
+    const hourlyData = await hourlyResponse.json();
+    const currentTemp = hourlyData.properties.periods[0].temperature;
+    const forecastUrl = data.properties.forecast;
     const location = `${data.properties.relativeLocation.properties.city}, ${data.properties.relativeLocation.properties.state}`;
     const detailsResponse = await fetch(forecastUrl);
     const detailsData = await detailsResponse.json();
@@ -15,7 +19,7 @@ const renderWeather = async(url, container) => {
     let header = `
         <div class="weather-header">    
             <h2 class='display-6'>${location}</h2>
-            <p class='text-primary fs-3 mb-1'>${findFillIcon(forecast_periods[0].shortForecast)}  ${forecast_periods[0].temperature}&#176;F</p>
+            <p class='text-primary fs-3 mb-1'>${findFillIcon(forecast_periods[0].shortForecast)}  ${currentTemp}&#176;F</p>
             <p class="fs-5 text-primary">${forecast_periods[0].shortForecast}</p>
             
         </div>`;
