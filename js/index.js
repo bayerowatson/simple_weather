@@ -43,9 +43,13 @@ window.addEventListener("DOMContentLoaded", () => {
         renderWeather(`https://api.weather.gov/points/${gps}`, weather_content)
             .catch(err => alert(err.message));
             
-    });
-
-        
+    }, err => {
+        alert("We couldn't access your device's location: " + err.message + "\nHere is the weather for the geographic center of the US instead...");
+        let weather_content = container.querySelector(".weather-content");
+        weather_content.innerHTML = "Loading...";
+        renderWeather(`https://api.weather.gov/points/44.6714,-103.8521`, weather_content)
+            .catch(err => alert(err.message));
+    });       
 });
 
 barrowBtn.addEventListener("click", () => {
