@@ -14,6 +14,10 @@ const findIcon = (forecast) => {
     if (forecast.includes('Cloud')){
         return('<i style="font-size:30px" class="bi bi-clouds-fill"></i>')
     }
+    if (forecast.includes('Snow') || forecast.includes('Freez')){
+        return('<i style="font-size:30px" class="bi bi-snow2"></i>')
+    }
+    
     return('<p>'+forecast+'</p>')
 }
 

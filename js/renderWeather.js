@@ -12,7 +12,6 @@ const renderWeather = async(url, container) => {
     const detailsResponse = await fetch(forecastUrl);
     const detailsData = await detailsResponse.json();
     const forecast_periods = detailsData.properties.periods;
-    console.log(forecast_periods[4]);
     let header = `
         <div class="weather-header">    
             <h2 class='display-6'>${location}</h2>
