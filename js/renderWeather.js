@@ -13,7 +13,7 @@ const renderWeather = async(url, container) => {
     
     let header = `
         <div class="weather-header">    
-            <h2>${location}</h2>
+            <h2 class='display-6'>${location}</h2>
             <p>${forecast_periods[0].temperature}&#176;F</p>
             <p> ${forecast_periods[0].shortForecast}</p>
         </div>`;
@@ -26,8 +26,8 @@ const renderWeather = async(url, container) => {
     
         template +=
         `<div>
-            <h3>${period.name}</h3>
-            <p style="color:${color}">${period.detailedForecast}</p>
+            <h5 class='text-muted'>${period.name}</h3>
+            <p>${period.detailedForecast}</p>
         </div>`
     })
      
