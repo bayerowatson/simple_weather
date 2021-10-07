@@ -21,7 +21,7 @@ const renderWeather = async(url, container) => {
         </div>`;
     let template = '';
     forecast_periods.forEach( period => {
-        if (period.isDaytime){
+        if (period.isDaytime || period.name == 'Overnight') {
             template +=
             `<div class="accordion-item>
                 <div class='accordion-header' id=${period.name.split(' ').join('')}>
