@@ -1,6 +1,6 @@
 import { findIcon, findFillIcon } from "./findIcon.js";
 
-const renderWeather = async(url, container) => {
+const renderWeather = async (url, container) => {
     container.innerHTML = "Loading..."
     const response = await fetch(url);
     if (response.status !== 200) {
@@ -34,8 +34,8 @@ const renderWeather = async(url, container) => {
             `<div class="accordion-item>
                 <div class='accordion-header' id=${period.name.split(' ').join('')}>
                     <button class='accordion-button' type="button" data-bs-toggle="collapse" data-bs-target=${'#collapse'+period.name.split(' ').join('')} aria-expanded="false" aria-controls=${'collapse'+period.name.split(' ').join('')}>
-                        <div class='fs-3 mb-3'>
-                            ${period.name}:  ${findIcon(period.shortForecast)} ${period.temperature}&#176;F<span class='fs-5 text-secondary'>${lowTemp && '/'+lowTemp+'&#176;F'}</span>
+                        <div class='fs-3 mb-3 pb-2 d-flex justify-content-between border-bottom'>
+                            <span>${period.name} :</span>  <span>${findIcon(period.shortForecast)} ${period.temperature}&#176;F<span class='fs-5 text-secondary'>${lowTemp && '/'+lowTemp+'&#176;F'}</span></span>
                         </div>
                     </button>
                 </div>

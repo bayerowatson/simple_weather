@@ -40,7 +40,10 @@ window.addEventListener("DOMContentLoaded", () => {
         let details = position.coords;
         let gps = details.latitude + ',' + details.longitude;
         renderWeather(`https://api.weather.gov/points/${gps}`, weather_content)
-            .catch(err => alert(err.message));
+            .catch(err => {
+                alert("We couldn't render the weather..." + err.message)
+                weather_content.innerHTML = "<p class='display-5'>Oops... Something went wrong. Please try again...</p>"
+            });
             
     }, err => {
         alert("We couldn't access your device's location: " + err.message + "\nHere is the weather for the geographic center of the US instead...");
