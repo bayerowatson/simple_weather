@@ -23,7 +23,7 @@ form.addEventListener('submit', async (e) => {
             weather_details.classList.add("show");
         })    
         .catch(err => {
-            alert(err.message + '\nMake sure you entered a valid US location (e.g. Fayetteville, WV)');
+            console.log(err.message + '\nMake sure you entered a valid US location (e.g. Fayetteville, WV)');
             form.location.value='';
             weather_content.innerHTML = "<p class='display-5'>Oops... Something went wrong. Please try again...</p>"
         });
@@ -41,16 +41,16 @@ window.addEventListener("DOMContentLoaded", () => {
         let gps = details.latitude + ',' + details.longitude;
         renderWeather(`https://api.weather.gov/points/${gps}`, weather_content)
             .catch(err => {
-                alert("We couldn't render the weather..." + err.message)
+                console.log("We couldn't render the weather..." + err.message)
                 weather_content.innerHTML = "<p class='display-5'>Oops... Something went wrong. Please try again...</p>"
             });
             
     }, err => {
-        alert("We couldn't access your device's location: " + err.message + "\nHere is the weather for the geographic center of the US instead...");
+        console.log("We couldn't access your device's location: " + err.message + "\nHere is the weather for the geographic center of the US instead...");
         let weather_content = container.querySelector(".weather-content");
         weather_content.innerHTML = "Loading...";
         renderWeather(`https://api.weather.gov/points/44.6714,-103.8521`, weather_content)
-            .catch(err => alert(err.message));
+            .catch(err => console.log(err.message));
     });       
 });
 
@@ -58,19 +58,19 @@ barrowBtn.addEventListener("click", () => {
     let weather_content = container.querySelector(".weather-content");
     weather_content.innerHTML = "Loading...";
     renderWeather(`https://api.weather.gov/points/71.2906,-156.7887`, weather_content)
-            .catch(err => alert(err.message));
+            .catch(err => console.log(err.message));
 })
 
 hanaBtn.addEventListener("click", () => {
     let weather_content = container.querySelector(".weather-content");
     weather_content.innerHTML = "Loading...";
     renderWeather(`https://api.weather.gov/points/20.7575,-155.9884`, weather_content)
-            .catch(err => alert(err.message));
+            .catch(err => console.log(err.message));
 })
 
 leadvilleBtn.addEventListener("click", () => {
     let weather_content = container.querySelector(".weather-content");
     weather_content.innerHTML = "Loading...";
     renderWeather(`https://api.weather.gov/points/39.2508,-106.2925`, weather_content)
-            .catch(err => alert(err.message));
+            .catch(err => console.log(err.message));
 })
