@@ -1,4 +1,5 @@
 const findIcon = (forecast) => {
+    
     if (forecast.includes('Rain') && (forecast.includes('Snow') || forecast.includes('Freez'))){
         return('<i style="font-size:30px" class="bi bi-cloud-rain"></i>/<i style="font-size:30px" class="bi bi-snow"></i>')
     }
@@ -33,7 +34,7 @@ const findIcon = (forecast) => {
 
 const findFillIcon = (forecast) => {
     if (forecast.includes('Rain') && (forecast.includes('Snow') || forecast.includes('Freez'))){
-        return('<i style="font-size:30px" class="bi bi-cloud-rain-fill"></i>/<i style="font-size:30px" class="bi bi-snow-fill"></i>')
+        return('<i style="font-size:30px" class="bi bi-cloud-rain-fill"></i>/<i style="font-size:30px" class="bi bi-snow"></i>')
     }
     if (forecast.includes('Thunderstorm')){
         return('<i style="font-size:30px" class="bi bi-cloud-lightning-rain-fill"></i>')
